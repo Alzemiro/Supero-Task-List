@@ -1,0 +1,15 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: example
+    url: jdbc:mysql://localhost:3306/db_supero_todo?useTimezone=true&serverTimezone=America/Sao_Paulo
+    username: syonet
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
