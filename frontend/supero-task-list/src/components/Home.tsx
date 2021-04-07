@@ -18,6 +18,7 @@ import clsx from 'clsx'
 import { AddBox, Done } from '@material-ui/icons'
 import CardComponent from './Card'
 import { Box } from '@material-ui/core'
+import AddCardModalComponent from './AddCardModal'
 
 const drawerWidth = 240
 
@@ -83,14 +84,25 @@ const HomeComponent = () => {
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = useState(false)
+    const [openDialog, setOpenDialog] = useState(false);
+    const [selectedValue, setSelectedValue] = useState("Teste");
 
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
+    const handleClickOpen = () => {
+      setOpenDialog(true);
+    };
+  
+    const handleClose = (value: string) => {
+      setOpenDialog(false);
+      setSelectedValue(value);
+    };
 
-  const handleDrawerClose = () => {
-    setOpen(false)
-  }
+    const handleDrawerOpen = () => {
+      setOpen(true)
+    }
+
+    const handleDrawerClose = () => {
+      setOpen(false)
+    }
     return(
         <div className={classes.root}>
         <CssBaseline />
@@ -131,14 +143,21 @@ const HomeComponent = () => {
           </div>
           <Divider />
           <List>
-            {['New Task', 'Task Done'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <AddBox /> : <Done />}</ListItemIcon>
-                <ListItemText primary={text} />
+              <ListItem button onClick={handleClickOpen} >
+                <ListItemIcon > 
+                  <AddBox />
+                </ListItemIcon>                
+                <ListItemText primary={"Incluir tarefa"} />
               </ListItem>
-            ))}
+              <ListItem button  >
+                <ListItemIcon > 
+                  <Done />
+                </ListItemIcon>
+                <ListItemText primary={"Tarefas concluídas"} />
+              </ListItem>            
           </List>
         </Drawer>
+        <AddCardModalComponent selectedValue={selectedValue} open={openDialog} onClose={handleClose} />
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: open,
