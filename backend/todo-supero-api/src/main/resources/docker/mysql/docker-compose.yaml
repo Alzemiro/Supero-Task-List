@@ -10,7 +10,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /user/syonet/database:/var/lib/mysql
+      - /opt/docker/volumes/mysql:/var/lib/mysql
 
   adminer:
     image: adminer
