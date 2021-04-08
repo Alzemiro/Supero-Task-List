@@ -42,6 +42,7 @@ import { useHistory } from "react-router";
         <DialogContent>
           <DialogContentText >
             <TextField
+              color="secondary"
               autoFocus
               required
               variant="outlined"
@@ -56,7 +57,7 @@ import { useHistory } from "react-router";
         <DialogContent>
           <DialogContentText >
             <TextField
-              
+              color="secondary"
               label="Descrição"
               name="descricao"
               onChange={(e) => setDetails(e.target.value)}

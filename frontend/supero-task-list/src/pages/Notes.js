@@ -18,18 +18,19 @@ export default function Notes() {
     setTask(newTasks);
   };
 
-  const handleDone = async (id) => {
+  const handleDone = async (id, status) => {
     const data = tasks.map(task => {
       if(task.id === id){
-        task.finished = true
+        task.finished = status
       }
       return task
-    }).filter(task => task.finished === true && task.id === id);
+    }).filter(task => task.id === id);
 
     await axios.put(`http://localhost:9090/card/${id}`, data[0]);
-    const newTasks = tasks.filter((task) => task.id !== id)
-    newTasks.push(data[0])
-    setTask(newTasks); 
+    const aux = tasks.findIndex((task) => task.id === id)
+    const tempTask = tasks.map(res => res)
+    tempTask[aux] = data[0]
+    setTask(tempTask); 
   };
 
   const handleUpdate = async (id, title, details) => {
@@ -39,7 +40,7 @@ export default function Notes() {
         task.content = details
       }
       return task
-    }).filter(task => task.finished === true && task.id === id);
+    }).filter(task => task.id === id);
 
     await axios.post(`http://localhost:9090/card/${id}`, data[0]);
     const newTasks = tasks.filter((task) => task.id !== id)
@@ -59,7 +60,7 @@ export default function Notes() {
         breakpointCols={breakpoints}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column">
-        {tasks.map(task => (
+        {tasks.sort().map(task => (
           <div key={task.id}>
             <TaskCard task={task} handleDelete={handleDelete} handleDone={handleDone} handleUpdate={handleUpdate}/>
           </div>

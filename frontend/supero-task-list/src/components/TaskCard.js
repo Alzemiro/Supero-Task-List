@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
     background: (done) => {
       if (done) {
         return "#B2FFB2";
+      }else{
+        return theme.palette.primary.main
       }
     },
   },
@@ -33,6 +35,10 @@ export default function TaskCard({
   const handleClose = () => {
     setOpenDialog(false);
   };
+
+  const setFinished = () => {
+    handleDone(task.id, !task.finished)
+  }
   return (
     <div>
       <Card elevation={1} className={classes.checkButton}>
@@ -50,7 +56,7 @@ export default function TaskCard({
             <IconButton onClick={handleClickOpen}>
               <EditOutlined />
             </IconButton>
-            <IconButton onClick={() => handleDone(task.id)}>
+            <IconButton onClick={() => setFinished()}>
               <DoneOutlined />
             </IconButton>
           </CardActions>
