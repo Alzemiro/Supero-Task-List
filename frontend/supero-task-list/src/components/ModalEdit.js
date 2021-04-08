@@ -22,6 +22,7 @@ import { useHistory } from "react-router";
         const data = task
         data.title = title
         data.content = details
+        data.dateAlt = Date.now()
         axios.put(`http://localhost:9090/card/${id}`, data).then(() => history.push("/"));
       };
     const closeOnSave = () => {

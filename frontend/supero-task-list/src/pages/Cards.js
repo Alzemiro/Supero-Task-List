@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Container from '@material-ui/core/Container'
 import Masonry from 'react-masonry-css'
-import NoteCard from '../components/TaskCard'
 import axios from 'axios';
 import TaskCard from '../components/TaskCard';
 
-export default function Notes() {
+export default function Cards() {
   const [tasks, setTask] = useState([]);
 
   useEffect(() => {
