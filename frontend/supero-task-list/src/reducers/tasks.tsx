@@ -13,8 +13,12 @@ const reducers = (state = INITIAL_STATE, action: any) => {
     switch(action.type) {
         case ActionTypes.TASK_GET:
             return { ...state, tasks: action.payload.data }
-        case ActionTypes.TASK_FETCH:
+        case ActionTypes.TASK_FETCH_SUCCESS:
             return  action.payload.data
+        case ActionTypes.TASK_DELETE:
+            return { ...state, tasks: action.payload.data }
+        case ActionTypes.TASK_INCLUDE:
+            return { ...state, tasks: action.payload.data }
         default:
             return state
     }

@@ -31,18 +31,18 @@ public class CardController{
 	public List<Card> list() {
 		return cardService.listCards();
 	}
-	
+	@CrossOrigin
 	@PostMapping	
 	public Card save(@RequestBody Card card) {
 		return cardService.saveCard(card);
 	}
-	
+	@CrossOrigin
 	@PutMapping("/{cardId}")
 	public Optional<Card> update(@PathVariable("cardId") Long cardId,
 					   @RequestBody Card card) {
 		return cardService.updateCard(card, cardId);	
 	}
-	
+	@CrossOrigin
 	@PostMapping("/{cardId}")
 	public void delete(@PathVariable("cardId") Long cardId) {
 		cardService.deleteCard(cardId);

@@ -1,4 +1,4 @@
-import react, { useState } from 'react'
+import react, { useEffect, useState } from 'react'
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -17,8 +17,10 @@ import ListItemText from '@material-ui/core/ListItemText'
 import clsx from 'clsx'
 import { AddBox, Done } from '@material-ui/icons'
 import CardComponent from './Card'
-import { Box } from '@material-ui/core'
 import AddCardModalComponent from './AddCardModal'
+import { Box } from '@material-ui/core'
+import { useDispatch } from 'react-redux'
+import { fetchTask } from '../actions/tasks'
 
 const drawerWidth = 240
 
@@ -81,6 +83,7 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const HomeComponent = () => {
+  
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = useState(false)
@@ -163,8 +166,8 @@ const HomeComponent = () => {
             [classes.contentShift]: open,
           })}
         >
-        <Box display="flex" alignItems="center" justifyContent="space-between" my="50px">
-            <CardComponent />
+        <Box my={10}>
+          <CardComponent />
         </Box>
         </main>
       </div>
