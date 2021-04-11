@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Notes from './pages/Notes'
+import Cards from './pages/Cards'
 import Create from './pages/Create'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { purple } from '@material-ui/core/colors'
@@ -28,7 +28,7 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path="/">
-              <Notes />
+              <Cards />
             </Route>
             <Route path="/create">
               <Create />
